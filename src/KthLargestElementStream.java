@@ -1,5 +1,10 @@
 import java.util.PriorityQueue;
 
+/**
+ * Time Complexity:
+ * add(): O(log K) for adding an element to the min-heap and maintaining the size.
+ * getKthLargest(): O(1) since the root of the min-heap is the K-th largest element.
+ */
 public class KthLargestElementStream {
 
   KthLargestElementStream(int size) {
@@ -9,10 +14,12 @@ public class KthLargestElementStream {
   PriorityQueue<Integer> stream = new PriorityQueue<>();
   int size = 0;
 
+  // O(1) from the PQ peek
   private Integer getKthLargest() {
     return stream.isEmpty() || stream.size() < size ? -1 : stream.peek();
   }
 
+  // Log n for each add operation
   private void add(int data) {
     if (stream.size() < size) {
       stream.offer(data);
