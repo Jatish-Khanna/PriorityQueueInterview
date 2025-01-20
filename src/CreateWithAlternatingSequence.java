@@ -1,6 +1,11 @@
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * time complexity of O(n log k), where n
+ * is the length of the string and k is the number
+ * of distinct characters (up to 26 for lowercase English letters).
+ */
 public class CreateWithAlternatingSequence {
 
 
@@ -25,7 +30,7 @@ public class CreateWithAlternatingSequence {
     int[] current;
     while (!order.isEmpty()) {
       current = order.poll();
-      sb.append((char)(current[0] + 'a'));
+      sb.append((char) (current[0] + 'a'));
       --current[1]; // update the freq
 
       if (prev != null && prev[1] > 0) {
