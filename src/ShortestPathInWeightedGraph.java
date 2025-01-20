@@ -1,9 +1,36 @@
-import org.w3c.dom.Node;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ShortestPathInWeightedGraph {
+
+  record Node(int id, int weight) {
+
+  }
+
+
+  private static int[] dijkstra(int n, List<List<Node>> graph, int source) {
+    PriorityQueue<Node> closest = new PriorityQueue<>((Comparator.comparing(node -> node.weight)));
+    int[] dist = new int[n];
+    Arrays.fill(dist, Integer.MAX_VALUE);
+    closest.offer(new Node(source, 0));
+    dist[source] = 0;
+    while (!closest.isEmpty()) {
+      Node current = closest.poll();
+      // pruning: close when weight is already lower
+      if (current.weight > dist[current.id]) {
+        continue;
+      }
+
+      for (Node connected : graph.get(current.id)) {
+        int newDist = connected.weight + current.weight;
+        if (dist[connected.id] > newDist) {
+          dist[connected.id] = newDist;
+          closest.offer(new Node(connected.id, newDist));
+        }
+      }
+    }
+    return dist;
+  }
 
   public static void main(String[] args) {
     // Example graph with 5 nodes (0 to 4)
