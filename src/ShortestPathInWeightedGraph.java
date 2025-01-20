@@ -1,6 +1,16 @@
 import java.util.*;
 
-
+/**
+ * 4. Overall Time Complexity:
+ * Polling happens once per node: O(n).
+ * Pushing (inserting edges into the priority queue) happens once per edge: O(E log n).
+ * Therefore, the total time complexity of Dijkstra’s algorithm is:
+ * <p>
+ * <p>
+ * O((E+n)logn)
+ *
+ * space : O(n+E)
+ */
 public class ShortestPathInWeightedGraph {
 
   record Node(int id, int weight) {
